@@ -1,0 +1,16 @@
+ul.currentDayEvents {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+.currentDayEventItem {
+    padding-right: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: blue;
+}
