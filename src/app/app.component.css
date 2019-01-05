@@ -14,3 +14,13 @@ ul.currentDayEvents {
     margin-bottom: 4px;
     background-color: blue;
 }
+
+
+.addWeekDayBtn {
+    visibility: hidden;
+    margin-left: 6px;
+}
+
+.cal-header:hover .addWeekDayBtn{
+    visibility: visible;
+}

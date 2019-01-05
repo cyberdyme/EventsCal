@@ -11,6 +11,7 @@
   </ul>
 </ng-template>
 
+<!--
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -64,6 +65,40 @@
     </div>
   </div>
 </div>
+-->
+
+<ng-template
+      #customWeekViewCellTemplate
+      let-days="days"
+      let-locale="locale"
+      let-dayHeaderClicked="dayHeaderClicked"
+      let-eventDropped="eventDropped">
+      <div class="cal-day-headers">
+        <div
+          class="cal-header"
+          *ngFor="let day of days; trackBy: trackByWeekDayHeaderDate"
+          [class.cal-past]="day.isPast"
+          [class.cal-today]="day.isToday"
+          [class.cal-future]="day.isFuture"
+          [class.cal-weekend]="day.isWeekend"
+          [ngClass]="day.cssClass"
+          (mwlClick)="dayHeaderClicked.emit({ day: day })"
+          mwlDroppable
+          dragOverClass="cal-drag-over"
+          (drop)="
+            eventDropped.emit({
+              event: $event.dropData.event,
+              newStart: day.date
+            })
+          ">
+          <b>{{ day.date | calendarDate: 'weekViewColumnHeader':locale }}<button class="addWeekDayBtn">+ New</button></b>
+          <br />
+          <span>{{day.date | calendarDate: 'weekViewColumnSubHeader':locale}}</span>
+        </div>
+      </div>
+    </ng-template>
+
+
 
 <div [ngSwitch]="view">
   <mwl-calendar-month-view
@@ -77,6 +112,8 @@
     #calendarWeekView
     *ngSwitchCase="'week'"
     [viewDate]="viewDate"
-    [events]="events">
+    [events]="events"
+    [headerTemplate]="customWeekViewCellTemplate"
+    (eventClicked)="oneventClicked($event)">
   </mwl-calendar-week-view>
 </div>
