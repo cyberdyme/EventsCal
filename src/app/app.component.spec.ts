@@ -6,7 +6,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
+      imports: [
         BrowserAnimationsModule,
         CalendarModule.forRoot({
           provide: DateAdapter,
@@ -23,6 +23,6 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
 
-    app.debugElement.query()
+    app.debugElement.query();
   }));
 });

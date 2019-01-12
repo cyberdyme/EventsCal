@@ -96,7 +96,33 @@
           <span>{{day.date | calendarDate: 'weekViewColumnSubHeader':locale}}</span>
         </div>
       </div>
-    </ng-template>
+</ng-template>
+
+<ng-template
+  #weekViewHourSegmentTemplate
+  let-segment="segment"
+  let-locale="locale"
+  let-segmentHeight="segmentHeight"
+  let-isTimeLabel="isTimeLabel">
+  <div
+    #segmentElement
+    class="cal-hour-segment"
+    [style.height.px]="segmentHeight"
+    [class.cal-hour-start]="segment.isStart"
+    [class.cal-after-hour-start]="!segment.isStart"
+    [ngClass]="segment.cssClass"
+    (mousedown)="startDragToCreate(segment, $event, segmentElement)">
+    <div class="cal-time" *ngIf="isTimeLabel">
+      {{ segment.date | calendarDate:'weekViewHour':locale }}
+    </div>
+    <!--
+    <div class="cal-time" *ngIf="!isTimeLabel">
+      <button class="addWeekDayBtn">+ New</button>
+    </div>
+    -->
+  </div>
+</ng-template>
+
 
 
 
@@ -114,6 +140,7 @@
     [viewDate]="viewDate"
     [events]="events"
     [headerTemplate]="customWeekViewCellTemplate"
+    [hourSegmentTemplate]="weekViewHourSegmentTemplate"
     (eventClicked)="oneventClicked($event)">
   </mwl-calendar-week-view>
 </div>

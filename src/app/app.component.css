@@ -24,3 +24,9 @@ ul.currentDayEvents {
 .cal-header:hover .addWeekDayBtn{
     visibility: visible;
 }
+
+/*
+.cal-time .addWeekDayBtn{
+  visibility: visible;
+}
+*/
